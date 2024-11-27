@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PhoneDTO } from "./phoneDTO";
 import { JwtService } from "@nestjs/jwt";
 
@@ -14,4 +14,11 @@ export class AuthService {
     };
   }
 
+  async decodeJwt(token){
+
+    const decodedJwt = await this.jwtService.decode(token);
+
+    return decodedJwt == null?new UnauthorizedException:decodedJwt;
+
+  }
 }

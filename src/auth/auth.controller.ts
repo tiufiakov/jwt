@@ -3,8 +3,6 @@ import { PhoneDTO } from "./phoneDTO";
 import { JwtService } from "@nestjs/jwt";
 import { AuthService } from "./auth.service";
 
-
-
 @Controller()
 export class AuthController {
 
@@ -24,6 +22,6 @@ export class AuthController {
 
   @Get("/task3")
   async decodeToken(@Headers("token") token) {
-    return await this.jwtService.decode(token)
+    return this.authService.decodeJwt(token);
   }
 }
